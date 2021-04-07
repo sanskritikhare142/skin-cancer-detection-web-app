@@ -1,3 +1,4 @@
+import HomePage from "./routes/HomePage";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
 
@@ -7,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        <RouterPage path="/" pageComponent={<HomePage />} />
         <RouterPage path="/login" pageComponent={<LoginPage />} />
         <RouterPage path="/signup" pageComponent={<SignupPage />} />
       </Router>
