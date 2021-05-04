@@ -15,12 +15,12 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-import Background from "../assets/img/background.jpg";
 import Dropdown from "react-bootstrap/Dropdown";
 import Cookies from "js-cookie";
 import img from "../assets/img/img.png";
 import logo from "../assets/icon/logo.png";
 import "../assets/style/style.css";
+import "../assets/style/global.css";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 const drawerWidth = 240;
@@ -249,7 +249,14 @@ export default function VariantDrawer(props: any) {
                   </Tooltip>
                 </ListItemIcon>
               </Link>
-              <h5 className="pl-2" onClick={() => navigate("/doctor")}>
+              <h5
+                className="pl-2"
+                onClick={() =>
+                  navigate(
+                    "https://www.google.com/search?q=dermatologist+near+me&client=ms-android-samsung-gs-rev1&sxsrf=ALeKk00maJRKDUCzpbsHBWOXi-3JMKR1ww%3A1619685616917&ei=8HCKYPHGN8XYz7sP76ahgAc&oq=dermatologist+near+me&gs_lcp=Cgdnd3Mtd2l6EAMyBQgAELEDMgIIADICCAAyAggAMgYIABAHEB4yBggAEAcQHjICCAAyBggAEAcQHjICCAAyBggAEAcQHjoHCAAQsQMQQzoFCAAQkQI6AggmUOVDWOVjYM1maABwAngAgAH6AogB6haSAQgwLjE0LjAuMZgBAKABAaoBB2d3cy13aXrAAQE&sclient=gws-wiz&ved=0ahUKEwjx_t-Oh6PwAhVF7HMBHW9TCHAQ4dUDCA4&uact=5"
+                  )
+                }
+              >
                 See a Doctor
               </h5>
             </ListItem>
@@ -266,7 +273,14 @@ export default function VariantDrawer(props: any) {
                   </Tooltip>
                 </ListItemIcon>
               </Link>
-              <h5 className="pl-2 " onClick={() => navigate("/mentalsupport")}>
+              <h5
+                className="pl-2 "
+                onClick={() =>
+                  navigate(
+                    "https://www.google.com/search?q=psychologist+near+me&client=ms-android-samsung-gs-rev1&sxsrf=ALeKk02tVISl1dJfoaw4jQIDAnQjh7XvdA%3A1619667374302&ei=rimKYJT4Ee2Z4-EPo7i7sAw&oq=psychologist+neae&gs_lcp=ChNtb2JpbGUtZ3dzLXdpei1zZXJwEAEYADIHCAAQyQMQCjIFCAAQkgMyBQgAEJIDMgQIABAKMgQIABAKMgQIABAKMgQIABAKMgQIABAKOgcIABBHELADOgQIABBDOgcIABDJAxBDOgIIADoFCAAQyQNQsRJYqxpg3CNoAXAAeACAAaYBiAHtBpIBAzAuNpgBAKABAcgBCMABAQ&sclient=mobile-gws-wiz-serp"
+                  )
+                }
+              >
                 Mental Support
               </h5>
             </ListItem>
@@ -282,7 +296,10 @@ export default function VariantDrawer(props: any) {
                   </Tooltip>
                 </ListItemIcon>
               </Link>
-              <h5 className="pl-2" onClick={() => navigate("/blogs")}>
+              <h5
+                className="pl-2"
+                onClick={() => navigate("https://www.skincancer.org/blog/")}
+              >
                 Blogs For Me
               </h5>
             </ListItem>
