@@ -1,8 +1,15 @@
-.wrapper {
+#root {
   height: 100%;
   width: 100%;
-  background-image: "../img/background.png";
-
+  z-index: -1;
+}
+html,
+body {
+  background-image: url("/Users/sanskriti/Documents/GitHub/skin-cancer-detection-web-app/src/assets/img/background.png");
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .button {
@@ -14,9 +21,11 @@
   border: 0px;
   padding: 0.3rem;
 }
+
 .button:hover {
   background: #cbb2a1 0% 0% no-repeat padding-box;
 }
+
 .heading1 {
   color: #c9a993;
   font-weight: bold;
