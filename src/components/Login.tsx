@@ -1,9 +1,38 @@
+import { navigate } from "@reach/router";
+import React, { useState } from "react";
 import Doctor from "../assets/img/doctor";
 import "../assets/style/login.css";
+import { postLogin } from "../utils/api";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 function Login() {
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const submitHandler = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      var formData = new FormData();
+      let user = {
+        email: email,
+        password: password,
+      };
+      Object.entries({ ...user }).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+      console.log(formData);
+      const res = await postLogin(formData);
+      console.log("Hi", res);
+      if (res) {
+        navigate("/");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
       <div className="wrapper">
+        <ToastContainer />
         <div className="row split-screen-modal">
           <div className="col-md-6 sm-12">
             <div className="login container d-flex align-items-center py-5">
@@ -24,6 +53,7 @@ function Login() {
                         type="email"
                         placeholder="Email address"
                         className="form-control input-field "
+                        onChange={(e) => setEmail(e.target.value)}
                       />
                     </div>
                     <div className="form-group mb-3">
@@ -32,12 +62,14 @@ function Login() {
                         type="password"
                         placeholder="Password"
                         className="form-control input-field "
+                        onChange={(e) => setPassword(e.target.value)}
                       />
                     </div>
                     <div className="row d-flex justify-content-center mt-4">
                       <button
                         type="submit"
                         className="button btn-primary col-5"
+                        onClick={submitHandler}
                       >
                         Login
                       </button>
