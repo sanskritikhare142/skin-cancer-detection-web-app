@@ -1,5 +1,5 @@
 import HomePage from "./routes/HomePage";
-// import TestPage from "./routes/TestPage";
+import TestPage from "./routes/TestPage";
 import LoginPage from "./routes/LoginPage";
 import SignupPage from "./routes/SignupPage";
 
@@ -10,7 +10,7 @@ function App() {
     <div className="App">
       <Router>
         <RouterPage path="/" pageComponent={<HomePage />} />
-        {/* <RouterPage path="/test" pageComponent={<TestPage />} /> */}
+        <RouterPage path="/test" pageComponent={<TestPage />} />
         <RouterPage path="/login" pageComponent={<LoginPage />} />
         <RouterPage path="/signup" pageComponent={<SignupPage />} />
       </Router>

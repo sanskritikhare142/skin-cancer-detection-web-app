@@ -1,0 +1,40 @@
+.customform {
+  padding-top: 50px;
+}
+
+.MuiStepIcon-root.MuiStepIcon-active {
+  color: #faecec !important;
+}
+
+.MuiStepIcon-text {
+  fill: black !important;
+}
+
+.MuiStepIcon-root.MuiStepIcon-completed {
+  color: #faecec !important;
+}
+
+.heading2 {
+  font-weight: 500;
+  font-size: 21px;
+  letter-spacing: -1px;
+  color: #1c4e94;
+}
+
+.btn {
+  background: #0fbf61;
+  border-radius: 29px;
+}
+.add-btn {
+  width: 80px;
+  height: 42px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  border-color: #ffffff;
+}
+.deactivate {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: #ff0505 !important;
+}
