@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import Swal from "sweetalert2";
 import "../assets/style/form.css";
 import "../assets/style/global.css";
 import { postPicture } from "../utils/api";
@@ -11,10 +11,40 @@ function Test() {
       formArray.forEach(([key, value]) => {
         formData.append(key, value);
       });
-      // const imageUrl = URL.createObjectURL(event.target.files[0]);
+
       const res = await postPicture(formData);
-      console.log("Hi", res);
+      if (res != false) {
+        Swal.fire({
+          title: res.data.result === "benign" ? "Benign" : "Malignant",
+          text:
+            res.data.result === "benign"
+              ? "No need to worry! You are non-cancerous. Although if you continue to face problems, do consult a doctor. This result is just for indicative purpose."
+              : "Our analysis indicate that you might have a cancer. Although consult a doctor for confirmation and further treatment. This result is just for indicative purpose.",
+          imageUrl: "https://source.unsplash.com/400x200/?skincare,flower",
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+          buttonsStyling: false,
+          customClass: { confirmButton: "button text-white px-5 py-2" },
+        });
+        console.log("Hi", res);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          buttonsStyling: false,
+          customClass: { confirmButton: "button text-white px-5 py-2" },
+        });
+      }
     } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        buttonsStyling: false,
+        customClass: { confirmButton: "button text-white px-5 py-2" },
+      });
       console.log(err);
     }
   };
