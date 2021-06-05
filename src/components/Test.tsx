@@ -1,14 +1,26 @@
+import { AxiosResponse } from "axios";
 import "../assets/style/form.css";
 import "../assets/style/global.css";
+import { postPicture } from "../utils/api";
 function Test() {
+  const handleChange = async (event: any) => {
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      const formArray: [string, string | File][] = Object.entries({ file });
+      formArray.forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+      // const imageUrl = URL.createObjectURL(event.target.files[0]);
+      const res = await postPicture(formData);
+      console.log("Hi", res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <>
-      <form
-        action="http://127.0.0.1:5000/uploader"
-        method="POST"
-        encType="multipart/form-data"
-        style={{ paddingTop: 100, paddingLeft: 100, paddingRight: 20 }}
-      >
+      <div style={{ paddingTop: 100, paddingLeft: 100, paddingRight: 20 }}>
         <div className="row">
           <div className="col-6">
             <label>First Name</label>
@@ -90,7 +102,13 @@ function Test() {
             </label>
           </div>
           <div className="col-10">
-            <input type="file" className="form-control-file" name="file" />
+            <input
+              type="file"
+              className="form-control-file"
+              name="file"
+              onChange={handleChange}
+              accept="image/*"
+            />
           </div>
         </div>
 
@@ -99,7 +117,7 @@ function Test() {
         <button className="button px-5 py-3 mb-5 text-white" type="submit">
           Submit & predict
         </button>
-      </form>
+      </div>
     </>
   );
 }
