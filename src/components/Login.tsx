@@ -1,20 +1,24 @@
 import { navigate } from "@reach/router";
-import React, { useState } from "react";
+import { useState } from "react";
 import Doctor from "../assets/img/doctor";
 import "../assets/style/login.css";
 import { postLogin } from "../utils/api";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { loginSchema } from "../utils/schemas";
+import { Formik, Form, Field } from "formik";
+
 function Login() {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const submitHandler = async (e: React.FormEvent) => {
+  const initialValues = {
+    email: "",
+    password: "",
+  };
+  const submitHandler = async (values: any) => {
     try {
-      e.preventDefault();
       var formData = new FormData();
       let user = {
-        email: email,
-        password: password,
+        email: values.email,
+        password: values.password,
       };
       Object.entries({ ...user }).forEach(([key, value]) => {
         formData.append(key, value);
@@ -46,43 +50,60 @@ function Login() {
                     Lorem ipsum, or lipsum as it is sometimes known, is dummy
                     text used in laying out print, graphic or web designs.
                   </p>
-                  <form>
-                    <div className="form-group mb-3">
-                      <input
-                        id="inputEmail"
-                        type="email"
-                        placeholder="Email address"
-                        className="form-control input-field "
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group mb-3">
-                      <input
-                        id="inputPassword"
-                        type="password"
-                        placeholder="Password"
-                        className="form-control input-field "
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                    <div className="row d-flex justify-content-center mt-4">
-                      <button
-                        type="submit"
-                        className="button btn-primary col-5"
-                        onClick={submitHandler}
-                      >
-                        Login
-                      </button>
-                    </div>
-                    <div className="row text-muted d-flex justify-content-center mt-4">
-                      <p>
-                        Don't have an account?
-                        <a href="/signup" className="">
-                          <u>Sign up</u>
-                        </a>
-                      </p>
-                    </div>
-                  </form>
+                  <Formik
+                    initialValues={initialValues}
+                    onSubmit={(values) => submitHandler(values)}
+                    validationSchema={loginSchema}
+                  >
+                    {({ errors }) => (
+                      <Form>
+                        <div className="form-group mb-2">
+                          <Field
+                            id="inputEmail"
+                            type="email"
+                            placeholder="Email address"
+                            className="form-control input-field "
+                            name="email"
+                          />
+                        </div>
+                        {errors.email && (
+                          <div className="text-danger mt-0 mb-3">
+                            {errors.email}
+                          </div>
+                        )}
+                        <div className="form-group mb-2">
+                          <Field
+                            id="inputPassword"
+                            type="password"
+                            placeholder="Password"
+                            className="form-control input-field "
+                            name="password"
+                          />
+                        </div>
+                        {errors.password && (
+                          <div className="text-danger mt- mb-3">
+                            {errors.password}
+                          </div>
+                        )}
+                        <div className="row d-flex justify-content-center mt-4">
+                          <button
+                            type="submit"
+                            className="button btn-primary col-5"
+                          >
+                            Login
+                          </button>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                  <div className="row text-muted d-flex justify-content-center mt-4">
+                    <p>
+                      Don't have an account?
+                      <a href="/signup" className="">
+                        <u>Sign up</u>
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
