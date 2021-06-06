@@ -63,7 +63,7 @@ def signupUser():
                 return({"success": False, "message":"Passwords don't match"}), 403
             hashPassword=bcrypt.hashpw(dPW.encode('utf-8'),bcrypt.gensalt())
             db.users.insert({"email":dEM, "password":hashPassword})
-            return ({"success": True, "message":"User signed up!"}), 200
+            return ({"success": True, "email":dEM, "message":"User signed up!"}), 200
     except Exception as e:
         print(e)
         return ({"success": False, "message":"Unknown error"}),500
@@ -78,14 +78,13 @@ def loginUser():
         if request.method == "POST":
             dEM = request.form['email']
             dPW = request.form['password']
-            # print("Hi")
             checkUser = db.users.find_one({"email":dEM})
             print(checkUser)
             if(checkUser is None):
                 return({"success": False, "message":"User doesn't exists, please sign up!"}), 401
            
             if(bcrypt.checkpw(dPW.encode('utf-8'),checkUser['password'])):
-                return ({"success": True, "message":"User logged in!"}), 200
+                return ({"success": True, "email":dEM, "message":"User logged in!"}), 200
         return ({"success": False, "message":"Invalid Password"}), 401
     except Exception as e:
         print(e)
