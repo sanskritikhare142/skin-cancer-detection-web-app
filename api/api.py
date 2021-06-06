@@ -52,15 +52,12 @@ def signupUser():
         if request.method == "POST":
             dEM = request.form['email']
             dPW = request.form['password']
-            cPW = request.form['confirmPassword']
-            # print("Hi")
+            
             checkUser = db.users.find_one({"email":dEM})
             print(checkUser)
             if(checkUser):
                 return({"success": False, "message":"User already exists"}), 400
-            if cPW != dPW:
-                print("Hi")
-                return({"success": False, "message":"Passwords don't match"}), 403
+            
             hashPassword=bcrypt.hashpw(dPW.encode('utf-8'),bcrypt.gensalt())
             db.users.insert({"email":dEM, "password":hashPassword})
             return ({"success": True, "email":dEM, "message":"User signed up!"}), 200
