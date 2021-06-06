@@ -4,20 +4,23 @@ import "../assets/style/login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
 import { postSignup } from "../utils/api";
-import { useState } from "react";
-export default function () {
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [confPw, setConfPw] = useState<string>("");
+import { signupSchema } from "../utils/schemas";
+import { Formik, Form, Field } from "formik";
 
-  const submitHandler = async (e: React.FormEvent) => {
+export default function () {
+  let initialValues = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
+
+  const submitHandler = async (values: any) => {
     try {
-      e.preventDefault();
       var formData = new FormData();
       let user = {
-        email: email,
-        password: password,
-        confirmPassword: confPw,
+        email: values.email,
+        password: values.password,
+        confirmPassword: values.confPw,
       };
       Object.entries({ ...user }).forEach(([key, value]) => {
         formData.append(key, value);
@@ -50,55 +53,72 @@ export default function () {
                     Lorem ipsum, or lipsum as it is sometimes known, is dummy
                     text, or lipsum as it is sometimes known
                   </p>
-                  <form>
-                    <div className="form-group mb-3">
-                      <input
-                        id="inputEmail"
-                        type="email"
-                        name="email"
-                        placeholder="Email address"
-                        className="form-control input-field "
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group mb-3">
-                      <input
-                        id="inputPassword"
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        className="form-control input-field "
-                        onChange={(e) => setPassword(e.target.value)}
-                      />
-                    </div>
-                    <div className="form-group mb-3">
-                      <input
-                        id="inputPassword"
-                        type="password"
-                        name="confirmPassword"
-                        placeholder="Confirm Password"
-                        className="form-control input-field "
-                        onChange={(e) => setConfPw(e.target.value)}
-                      />
-                    </div>
-                    <div className="row d-flex justify-content-center mt-4">
-                      <button
-                        type="submit"
-                        className="button btn-primary col-5"
-                        onClick={submitHandler}
-                      >
-                        Signup
-                      </button>
-                    </div>
-                    <div className="row text-muted d-flex justify-content-center mt-4">
-                      <p>
-                        Already have an account?
-                        <a href="/login">
-                          <u>Login</u>
-                        </a>
-                      </p>
-                    </div>
-                  </form>
+                  <Formik
+                    initialValues={initialValues}
+                    onSubmit={(values) => submitHandler(values)}
+                    validationSchema={signupSchema}
+                  >
+                    {({ errors }) => (
+                      <Form>
+                        <div className="form-group mb-3">
+                          <Field
+                            id="inputEmail"
+                            type="email"
+                            name="email"
+                            placeholder="Email address"
+                            className="form-control input-field "
+                          />
+                          {errors.email && (
+                            <div className="text-danger mb-3">
+                              {errors.email}
+                            </div>
+                          )}
+                        </div>
+                        <div className="form-group mb-3">
+                          <Field
+                            id="inputPassword"
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            className="form-control input-field "
+                          />
+                          {errors.password && (
+                            <div className="text-danger">{errors.password}</div>
+                          )}
+                        </div>
+                        <div className="form-group mb-3">
+                          <Field
+                            id="inputPassword"
+                            type="password"
+                            name="confirmPassword"
+                            placeholder="Confirm Password"
+                            className="form-control input-field "
+                          />
+                          {errors.confirmPassword && (
+                            <div className="text-danger">
+                              {errors.confirmPassword}
+                            </div>
+                          )}
+                        </div>
+                        <div className="row d-flex justify-content-center mt-4">
+                          <button
+                            type="submit"
+                            className="button btn-primary col-5"
+                          >
+                            Signup
+                          </button>
+                        </div>
+                      </Form>
+                    )}
+                  </Formik>
+                  <div className="row text-muted d-flex justify-content-center mt-4">
+                    <p>
+                      Already have an account?
+                      <a href="/login">
+                        <u>Login</u>
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>

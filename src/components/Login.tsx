@@ -57,7 +57,7 @@ function Login() {
                   >
                     {({ errors }) => (
                       <Form>
-                        <div className="form-group mb-2">
+                        <div className="form-group mb-3">
                           <Field
                             id="inputEmail"
                             type="email"
@@ -65,13 +65,11 @@ function Login() {
                             className="form-control input-field "
                             name="email"
                           />
+                          {errors.email && (
+                            <div className="text-danger">{errors.email}</div>
+                          )}
                         </div>
-                        {errors.email && (
-                          <div className="text-danger mt-0 mb-3">
-                            {errors.email}
-                          </div>
-                        )}
-                        <div className="form-group mb-2">
+                        <div className="form-group mb-3">
                           <Field
                             id="inputPassword"
                             type="password"
@@ -79,12 +77,10 @@ function Login() {
                             className="form-control input-field "
                             name="password"
                           />
+                          {errors.password && (
+                            <div className="text-danger">{errors.password}</div>
+                          )}
                         </div>
-                        {errors.password && (
-                          <div className="text-danger mt- mb-3">
-                            {errors.password}
-                          </div>
-                        )}
                         <div className="row d-flex justify-content-center mt-4">
                           <button
                             type="submit"
