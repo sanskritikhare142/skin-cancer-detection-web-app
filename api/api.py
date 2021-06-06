@@ -16,6 +16,7 @@ app.config['CORS_HEADERS'] = 'Content-Type'
 
 cors = CORS(app, resources={r"/signup": {"origins": "http://localhost:5000"}})
 cors = CORS(app, resources={r"/login": {"origins": "http://localhost:5000"}})
+cors = CORS(app, resources={r"/uploader": {"origins": "http://localhost:5000"}})
 
 def finds():
 	test_datagen = ImageDataGenerator(rescale = 1./255)
@@ -34,6 +35,7 @@ def finds():
 	return str(vals[np.argmax(pred)])
 
 @app.route('/uploader', methods = ['POST'])
+@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def upload_file():
     if request.method == "POST":
         f = request.files['file']

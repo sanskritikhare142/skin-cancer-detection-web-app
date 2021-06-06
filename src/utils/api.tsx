@@ -13,7 +13,7 @@ export const postSignup = async (values: any) => {
     return true;
   } catch (err) {
     console.log(err);
-    errorHandler(err)
+    errorHandler(err);
     return false;
   }
 };
@@ -29,6 +29,20 @@ export const postLogin = async (values: any) => {
   } catch (err) {
     errorHandler(err);
     console.log(err);
+    return false;
+  }
+};
+export const postPicture = async (imageUrl: any) => {
+  try {
+    const _res = await axios({
+      method: "POST",
+      url: `${baseUrl}uploader`,
+      data: imageUrl,
+    });
+    successHandler("🎉 Your profile image is updated successfully!");
+    return _res;
+  } catch (err) {
+    errorHandler(err);
     return false;
   }
 };

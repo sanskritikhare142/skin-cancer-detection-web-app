@@ -1,14 +1,56 @@
+import Swal from "sweetalert2";
 import "../assets/style/form.css";
 import "../assets/style/global.css";
+import { postPicture } from "../utils/api";
 function Test() {
+  const handleChange = async (event: any) => {
+    try {
+      const file = event.target.files[0];
+      const formData = new FormData();
+      const formArray: [string, string | File][] = Object.entries({ file });
+      formArray.forEach(([key, value]) => {
+        formData.append(key, value);
+      });
+
+      const res = await postPicture(formData);
+      if (res != false) {
+        Swal.fire({
+          title: res.data.result === "benign" ? "Benign" : "Malignant",
+          text:
+            res.data.result === "benign"
+              ? "No need to worry! You are non-cancerous. Although if you continue to face problems, do consult a doctor. This result is just for indicative purpose."
+              : "Our analysis indicate that you might have a cancer. Although consult a doctor for confirmation and further treatment. This result is just for indicative purpose.",
+          imageUrl: "https://source.unsplash.com/400x200/?skincare,flower",
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+          buttonsStyling: false,
+          customClass: { confirmButton: "button text-white px-5 py-2" },
+        });
+        console.log("Hi", res);
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          buttonsStyling: false,
+          customClass: { confirmButton: "button text-white px-5 py-2" },
+        });
+      }
+    } catch (err) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong!",
+        buttonsStyling: false,
+        customClass: { confirmButton: "button text-white px-5 py-2" },
+      });
+      console.log(err);
+    }
+  };
   return (
     <>
-      <form
-        action="http://127.0.0.1:5000/uploader"
-        method="POST"
-        encType="multipart/form-data"
-        style={{ paddingTop: 100, paddingLeft: 100, paddingRight: 20 }}
-      >
+      <div style={{ paddingTop: 100, paddingLeft: 100, paddingRight: 20 }}>
         <div className="row">
           <div className="col-6">
             <label>First Name</label>
@@ -90,7 +132,13 @@ function Test() {
             </label>
           </div>
           <div className="col-10">
-            <input type="file" className="form-control-file" name="file" />
+            <input
+              type="file"
+              className="form-control-file"
+              name="file"
+              onChange={handleChange}
+              accept="image/*"
+            />
           </div>
         </div>
 
@@ -99,7 +147,7 @@ function Test() {
         <button className="button px-5 py-3 mb-5 text-white" type="submit">
           Submit & predict
         </button>
-      </form>
+      </div>
     </>
   );
 }
