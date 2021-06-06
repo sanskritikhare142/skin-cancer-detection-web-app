@@ -29,7 +29,7 @@ export default function () {
       const res = await postSignup(formData);
       console.log("Hi", res);
       if (res) {
-        navigate("/login");
+        navigate("/");
       }
     } catch (err) {
       console.log(err);

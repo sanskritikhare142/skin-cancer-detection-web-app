@@ -1,5 +1,4 @@
 import { navigate } from "@reach/router";
-import React from "react";
 import "../assets/style/herolanding.css";
 function HeroLanding() {
   return (

@@ -1,5 +1,4 @@
 import { navigate } from "@reach/router";
-import { useState } from "react";
 import Doctor from "../assets/img/doctor";
 import "../assets/style/login.css";
 import { postLogin } from "../utils/api";

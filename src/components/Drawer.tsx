@@ -112,11 +112,8 @@ export default function VariantDrawer(props: any) {
   };
 
   const logout = () => {
-    Cookies.remove("userId");
-    Cookies.remove("Token");
-    Cookies.remove("FirstName");
-    Cookies.remove("LastName");
-    navigate("/");
+    Cookies.remove("accessEmail");
+    navigate("/login");
   };
 
   return (
@@ -166,7 +163,7 @@ export default function VariantDrawer(props: any) {
                       Signed in as
                       <br />
                       <h6 style={{ marginTop: "5px" }}>
-                        {Cookies.get("userId")}
+                        {Cookies.get("accessEmail")}
                       </h6>
                     </div>
                     <hr style={{ margin: "0px" }} />

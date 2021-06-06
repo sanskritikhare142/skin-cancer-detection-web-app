@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import { baseUrl } from "../utils/constants";
 
@@ -9,8 +10,10 @@ export const postSignup = async (values: any) => {
       url: `${baseUrl}signup`,
       data: values,
     });
-    console.log("Hey api.tsx", _res);
-    return true;
+    if (_res) {
+      Cookies.set("accessEmail", _res.data.email, { expires: 1 });
+      return true;
+    }
   } catch (err) {
     console.log(err);
     errorHandler(err);
@@ -25,7 +28,10 @@ export const postLogin = async (values: any) => {
       data: values,
     });
     console.log("Hey api.tsx", _res);
-    return true;
+    if (_res) {
+      Cookies.set("accessEmail", _res.data.email, { expires: 1 });
+      return true;
+    }
   } catch (err) {
     errorHandler(err);
     console.log(err);
