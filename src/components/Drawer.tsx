@@ -1,5 +1,4 @@
-import React, { Component, useState } from "react";
-//import "../assets/style/home.css";
+import React from "react";
 import clsx from "clsx";
 import { Link, navigate } from "@reach/router";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
@@ -17,7 +16,6 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import Dropdown from "react-bootstrap/Dropdown";
 import Cookies from "js-cookie";
-import img from "../assets/img/img.png";
 import logo from "../assets/icon/logo.png";
 import "../assets/style/style.css";
 import "../assets/style/global.css";

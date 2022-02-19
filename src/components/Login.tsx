@@ -46,8 +46,8 @@ function Login() {
                   </div>
 
                   <p className="text-muted text-center mb-4">
-                    Lorem ipsum, or lipsum as it is sometimes known, is dummy
-                    text used in laying out print, graphic or web designs.
+                    Empowering you to maintain your skin health. An approach to
+                    detecting skin cancer. Check and Protect!
                   </p>
                   <Formik
                     initialValues={initialValues}

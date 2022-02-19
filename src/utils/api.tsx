@@ -45,7 +45,6 @@ export const postPicture = async (imageUrl: any) => {
       url: `${baseUrl}uploader`,
       data: imageUrl,
     });
-    successHandler("🎉 Your profile image is updated successfully!");
     return _res;
   } catch (err) {
     errorHandler(err);
@@ -90,6 +89,5 @@ export const errorHandler = (error?: AxiosError | any) => {
       draggable: true,
       progress: undefined,
     });
-    console.log("Hello");
   }
 };
