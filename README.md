@@ -1,46 +1,49 @@
-# Getting Started with Create React App
+# Skin Cancer Detection Web Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+An application that can help a user detect skin cancer in its early stages. Just click a picture of the infected area, upload it and get the results.
 
-## Available Scripts
+## Starting the frontend server for the first time
 
-In the project directory, you can run:
+To download all the dependencies required for frontend, in the project directory, you can run:
+
+### `yarn`
+
+To start the frontend server, in the project directory, you can run:
 
 ### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Starting the backend server for the first time
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+To create a virtual environment for the backend, in the `api` directory, you can run:
 
-### `yarn test`
+### `python -m venv venv`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+**Note: if you are using an older mac, make sure you are using python 3. To create an alias for python 3, you can use the following command on your terminal:**
 
-### `yarn build`
+### `alias python=python3`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To activate your virtual environment, in the `api` directory, you can run:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `source venv/bin/activate`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+To download all the dependencies required for backend, use `pip` to install the dependencies. In the `api` directory, you can run:
 
-### `yarn eject`
+### `pip install <dependency_name>`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+To start the backend server, in the `api` directory, you can run:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `venv/bin/flask run --no-debugger`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+or in the project directory, you can run:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### `yarn start-api`
 
-## Learn More
+## How to run the application usually (after first time)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To start the frontend server, run the following command in the project directory:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `yarn start`
+
+To start the backend server, run the following command in the project directory:
+
+### `yarn start-api`
