@@ -30,7 +30,7 @@ def finds():
 		class_mode ='binary',
 		batch_size = 1)
 
-	pred = model.predict_generator(test_generator)
+	pred = model.predict(test_generator)
 	print(pred)
 	return str(vals[np.argmax(pred)])
 
@@ -70,7 +70,7 @@ def signupUser():
 def loginUser():
     try:
         db = mongodb_client.db
-        print("Connected to database")
+        print("Connected to database")x
         
         if request.method == "POST":
             dEM = request.form['email']
