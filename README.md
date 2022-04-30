@@ -26,11 +26,11 @@ To download all the project dependencies required for backend, use `pip` to inst
 
 To start the backend server, in the project directory, you can run:
 
-### `yarn start-api`
+(For macOS/Linux)
+### `yarn start-api-mac`
 
-**Note: If you are using windows, before running the above command, go to `package.json` in the project directory and in the scripts section, change the `start-api` and `test-api` fields to the following:**
-**`"start-api": "cd api && venv/Scripts/flask run --no-debugger"`**
-**`"test-api": "cd api && venv/Scripts/flask test"`**
+(For Windows)
+### `yarn start-api-win`
 
 ## Starting the frontend server for the first time
 
@@ -50,4 +50,8 @@ To start the frontend server, run the following command in the project directory
 
 To start the backend server, run the following command in the project directory:
 
-### `yarn start-api`
+(For macOS/Linux)
+### `yarn start-api-mac`
+
+(For Windows)
+### `yarn start-api-win`
